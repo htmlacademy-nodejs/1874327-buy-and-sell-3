@@ -68,18 +68,18 @@ const PictureRestrict =
     MAX: 16,
 };
 
-const getPictureFileName = (index) => (`item${index}.jpg`);
+const getPictureFileName = (index) => (`item${index.toString().padStart(2, '0')}.jpg`);
 
 const generateOffers = (count) => {
     return Array(count).fill({}).map(() => (
-        {
+    {
         title: TITLES[getRandomInt(0, TITLES.length - 1)],
         picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
         description: shuffle(SENTENCES).slice(0, getRandomInt(0, MAX_SENTENCES_COUNT - 1)).join(` `),
         type: OfferType[Object.keys(OfferType)[Math.floor(Math.random() * Object.keys(OfferType).length)]],
         sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
         category: shuffle(CATEGORIES).slice(0, getRandomInt(0, CATEGORIES.length - 1))
-        }));
+    }));
 };
 
 module.exports =
