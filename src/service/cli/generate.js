@@ -1,5 +1,7 @@
 'use strict';
 
+const chalk = require('chalk');
+
 const fs = require(`fs`);
 const {getRandomInt, shuffle} = require(`../utils`);
 
@@ -90,7 +92,7 @@ module.exports =
         const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
 
         if (countOffer > MAX_OFFERS_COUNT) {
-        console.error(`Не больше 1000 объявлений`);
+        console.error(chalk.red(`Не больше 1000 объявлений`));
         return 1;
         }
 
@@ -98,11 +100,11 @@ module.exports =
 
         fs.writeFile(FILE_NAME, content, (err) => {
         if (err) {
-            console.error(`Ошибка при записи в файл...`);
+            console.error(chalk.red(`Ошибка при записи в файл...`));
             return 1;
         }
 
-        console.info(`Операция выполнена успешно. Файл ${FILE_NAME} создан`);
+        console.info(chalk.green(`Операция выполнена успешно. Файл ${FILE_NAME} создан`));
         return 0;
         });
     }
