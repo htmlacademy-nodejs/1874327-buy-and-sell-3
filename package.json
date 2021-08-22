@@ -8,9 +8,11 @@
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-htmlacademy": "0.6.0"
+    "eslint-config-htmlacademy": "0.6.0",
+    "nodemon": "2.0.12"
   },
   "scripts": {
+    "start.dev": "nodemon ./src/service/service.js --server 3000",
     "start": "node ./src/service/service.js",
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/"
