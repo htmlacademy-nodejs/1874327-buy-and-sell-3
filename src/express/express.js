@@ -7,6 +7,9 @@ const DEFAULT_PORT = 8080;
 
 const app = express();
 
+app.set(`views`, `/templates`);
+app.set(`view engine`, `pug`);
+
 app.use(`/`, indexRouter);
 app.use(`/my`, myRouter);
 app.use(`/offers`, offersRouter);
