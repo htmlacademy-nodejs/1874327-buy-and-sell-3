@@ -1,11 +1,11 @@
 doctype html
 html(lang='ru')
-  include head
+  include common/head.pug
   body
-    include header
+    include common/header.pug
     main.page-content
       .message
         div(class='message__text')
           p На сайте еще не опубликовано ни&nbsp;одного объявления.
         a(href='#' class='message__link btn btn--big') Вход и регистрация
-    include footer.pug
+    include common/footer.pug

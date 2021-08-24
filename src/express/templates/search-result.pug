@@ -1,8 +1,8 @@
 doctype html
 html(lang='ru')
-  include head
+  include common/head.pug
   body
-    include header
+    include common/header.pug
     main.page-content
       section.search-results
         h1.visually-hidden Результаты поиска
@@ -179,4 +179,4 @@ html(lang='ru')
                       | ₽
                   div(class='ticket-card__desc')
                     p Куплю вот такую итальянскую кофеварку, можно любой фирмы...
-    include footer
+    include common/footer.pug
