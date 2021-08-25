@@ -18,6 +18,6 @@ app.use(`/offers`, offersRouter);
 
 app.use((req, res, next) => res.status(404).render('errors/404.pug', {}));
 
-app.use((req, res, next) => res.status(500).render(`errors/500.pug`, {}));
+app.use((err, req, res, next) => res.status(500).render(`errors/500.pug`, {}));
 
 app.listen(DEFAULT_PORT, () => console.log(`Сервер запущен на порту: ${DEFAULT_PORT}`));
