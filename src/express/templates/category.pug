@@ -1,8 +1,6 @@
-doctype html
-html(lang='ru')
-  include common/head.pug
-  body
-    include common/header.pug
+extends common/layout.pug
+
+block content
     main.page-content
       section.categories-list
         h1.visually-hidden Сервис объявлений "Куплю - продам"
@@ -192,4 +190,3 @@ html(lang='ru')
                 a(href='#') 5
               li
                 a(href='#') дальше
-    include common/footer.pug

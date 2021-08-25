@@ -1,8 +1,6 @@
-doctype html
-html(lang='ru')
-  include common/head.pug
-  body
-    include common/header.pug
+extends common/layout.pug
+
+block content
     main.page-content
       section.tickets-list
         h2.visually-hidden Самые новые предложения
@@ -86,4 +84,3 @@ html(lang='ru')
                       span.js-sum 1000
                       | ₽
                 button(class='ticket-card__del js-delete' type='button') Удалить
-    include common/footer.pug

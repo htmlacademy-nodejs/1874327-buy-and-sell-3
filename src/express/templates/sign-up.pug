@@ -1,8 +1,6 @@
-doctype html
-html(lang='ru')
-  include common/head.pug
-  body
-    include common/header.pug
+extends common/layout.pug
+
+block content
     main.page-content
       section.sign-up
         form(class='sign-up__form form' action='#' method='post' enctype='multipart/form-data' autocomplete='off')
@@ -33,4 +31,3 @@ html(lang='ru')
             label(for='user-password-again') Пароль еще раз
             span Обязательное поле
           button(class='sign-up__button btn btn--medium js-button' type='submit' disabled='') Создать аккаунт
-    include common/footer.pug

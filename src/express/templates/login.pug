@@ -1,8 +1,6 @@
-doctype html
-html(lang='ru')
-  include common/head.pug
-  body
-    include common/header.pug
+extends common/layout.pug
+
+block content
     main.page-content
       section.login
         form(class='login__form form' action='#' method='post' enctype='multipart/form-data')
@@ -18,4 +16,3 @@ html(lang='ru')
             label(for='user-password') Пароль
             span Обязательное поле
           button(class='login__button btn btn--medium js-button' type='submit' disabled='') Войти
-    include common/footer.pug

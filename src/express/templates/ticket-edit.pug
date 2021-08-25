@@ -1,8 +1,6 @@
-doctype html
-html(lang='ru')
-  include common/head.pug
-  body
-    include common/header.pug
+extends common/layout.pug
+
+block content
     main.page-content
       section.ticket-form
         div(class='ticket-form__wrapper')
@@ -47,4 +45,3 @@ html(lang='ru')
                       input#sell-field.visually-hidden(type='radio' name='action' value='sell')
                       label(for='sell-field' class='switch__button') Продам
               button(class='form__button btn btn--medium js-button' type='submit') Сохранить
-    include common/footer.pug
