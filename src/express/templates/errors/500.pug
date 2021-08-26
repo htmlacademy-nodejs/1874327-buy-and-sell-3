@@ -1,0 +1,23 @@
+doctype html
+html.html-server(lang='ru')
+  include ../common/head.pug
+  body.body-server
+    main
+      section.error
+        h1(class='error__title') 500
+        h2(class='error__subtitle') Ошибка cервера
+        ul(class='error__list')
+          li(class='error__item')
+            a(href='sign-up.html') Вход и регистрация
+          li(class='error__item')
+            a(href='new-ticket.html') Новая публикация
+          li(class='error__item')
+            a(href='main.html') Главная страница
+        form(class='error__search search search--small' method='get' action='#' autocomplete='off')
+          input(type='search' name='query' placeholder='Поиск' aria-label='Поиск')
+          div(class='search__icon')
+          div(class='search__close-btn')
+        a(class='error__logo logo' href='main.html')
+          img(src='img/logo.svg' width='179' height='34' alt='Логотип Куплю Продам')
+    script(src='js/vendor.js')
+    script(src='js/main.js')
