@@ -1,5 +1,6 @@
 const { Router } = require(`express`);
 const { HttpCode } = require(`../../constants`);
+const offerValidator = require(`../middlewares/offerValidator`);
 
 const route = new Router();
 
@@ -28,11 +29,11 @@ module.exports = (app, service) =>
         .json(offer);
     });
 
-    route.post(`/`, (req, res) =>
+    route.post(`/`, offerValidator, (req, res) =>
     {
         const offer = service.create(req.body);
         return res.status(HttpCode.CREATED)
-        .json(offer);
+            .json(offer);
     });
 
     route.put(`/:offerId`, (req, res) =>

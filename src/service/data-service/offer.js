@@ -14,6 +14,7 @@ class OfferService
             .assign({id: nanoid(MAX_ID_LENGTH), comments: []}, offer);
   
         this._offers.push(newOffer);
+        
         return newOffer;
     }
   
