@@ -1,6 +1,7 @@
 const { Router } = require(`express`);
 const { HttpCode } = require(`../../constants`);
 const offerValidator = require(`../middlewares/offerValidator`);
+const offerExist = require(`../middlewares/offerExist`);
 
 const route = new Router();
 
@@ -15,18 +16,10 @@ module.exports = (app, service) =>
         .json(offers);
     });
 
-    route.get(`/:offerId`, (req, res) =>
+    route.get(`/:offerId`, offerExist(service), (req, res) =>
     {
-        const { offerId } = req.params;
-        const offer = service.findOne(offerId);
-
-        if (!offer) {
-            return res.status(HttpCode.NOT_FOUND)
-                .send(`Not found with ${offerId}`);
-        }
-
         return res.status(HttpCode.OK)
-        .json(offer);
+            .json(res.locals.offer);
     });
 
     route.post(`/`, offerValidator, (req, res) =>
@@ -36,11 +29,10 @@ module.exports = (app, service) =>
             .json(offer);
     });
 
-    route.put(`/:offerId`, (req, res) =>
+    route.put(`/:offerId`, offerExist(service), (req, res) =>
     {
-        const { offerId } = req.params;
-        const offers = service.update(offerId, req.body);
+        const offer = service.update(res.locals.offer, req.body);
         return res.status(HttpCode.OK)
-            .json(offers);
+            .json(offer);
     });
 };
