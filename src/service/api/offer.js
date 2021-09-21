@@ -10,26 +10,36 @@ module.exports = (app, service) =>
     route.get(`/`, async (_req, res) =>
     {
         const offers = await service.findAll();
-        res.status(HttpCode.OK)
+        return res.status(HttpCode.OK)
         .json(offers);
     });
 
-    route.get(`/:offerId`, async (req, res) =>
+    route.get(`/:offerId`, (req, res) =>
     {
         const { offerId } = req.params;
-        const offers = await service.findOne(offerId);
-        res.status(HttpCode.OK)
-        .json(offers);
+        const offer = service.findOne(offerId);
+
+        if (!offer) {
+            return res.status(HttpCode.NOT_FOUND)
+                .send(`Not found with ${offerId}`);
+        }
+
+        return res.status(HttpCode.OK)
+        .json(offer);
     });
 
-    route.post(`/`, async (req, res) =>
+    route.post(`/`, (req, res) =>
     {
-        const newOffer = req.body;
+        const offer = service.create(req.body);
+        return res.status(HttpCode.CREATED)
+        .json(offer);
+    });
 
-        console.log(newOffer);
-
-        const offers = await service.create(newOffer);
-        res.status(HttpCode.OK)
-        .json(offers);
+    route.put(`/:offerId`, (req, res) =>
+    {
+        const { offerId } = req.params;
+        const offers = service.update(offerId, req.body);
+        return res.status(HttpCode.OK)
+            .json(offers);
     });
 };
