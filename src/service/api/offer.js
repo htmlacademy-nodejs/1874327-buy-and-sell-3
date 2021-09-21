@@ -21,4 +21,15 @@ module.exports = (app, service) =>
         res.status(HttpCode.OK)
         .json(offers);
     });
+
+    route.post(`/`, async (req, res) =>
+    {
+        const newOffer = req.body;
+
+        console.log(newOffer);
+
+        const offers = await service.create(newOffer);
+        res.status(HttpCode.OK)
+        .json(offers);
+    });
 };
