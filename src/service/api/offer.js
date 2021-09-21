@@ -35,4 +35,11 @@ module.exports = (app, service) =>
         return res.status(HttpCode.OK)
             .json(offer);
     });
+
+    route.delete(`/:offerId`, offerExist(service), (req, res) =>
+    {
+        service.drop(req.params.offerId);
+        return res.status(HttpCode.OK)
+            .json(req.params);
+    });
 };
