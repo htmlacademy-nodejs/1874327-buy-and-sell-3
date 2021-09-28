@@ -2,10 +2,11 @@ const { Router } = require(`express`);
 const { HttpCode } = require(`../../constants`);
 const offerValidator = require(`../middlewares/offerValidator`);
 const offerExist = require(`../middlewares/offerExist`);
+const commentsExists = require(`../middlewares/commentExist`);
 
 const route = new Router();
 
-module.exports = (app, service) =>
+module.exports = (app, service, commentService) =>
 {
     app.use(`/offers`, route);
 
@@ -39,6 +40,19 @@ module.exports = (app, service) =>
     route.delete(`/:offerId`, offerExist(service), (req, res) =>
     {
         service.drop(req.params.offerId);
+        return res.status(HttpCode.OK)
+            .json(req.params);
+    });
+
+    route.get(`/:offerId/comments`, offerExist(service), (_req, res) =>
+    {
+        return res.status(HttpCode.OK)
+            .json(res.locals.offer.comments);
+    });
+
+    route.delete(`/:offerId/comments/:commentId`, [offerExist(service), commentsExists(commentService)], (req, res) =>
+    {
+        commentService.drop(res.locals.offer, req.params.commentId);
         return res.status(HttpCode.OK)
             .json(req.params);
     });

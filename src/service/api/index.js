@@ -18,7 +18,7 @@ const app = new Router();
 
     category(app, new CategoryService(mockData));
     /*search(app, new SearchService(mockData));*/
-    offer(app, new OfferService(mockData), new CommentService());
+    offer(app, new OfferService(mockData), new CommentService(mockData));
 })();
 
 module.exports = app;
