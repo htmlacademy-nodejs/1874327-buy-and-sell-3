@@ -8,15 +8,15 @@ class CommentService
         this._offers = offers;
     }
     
-    /*create(comment)
+    create(offer, comment)
     {
-        const newOffer = Object
-            .assign({id: nanoid(MAX_ID_LENGTH), comments: []}, offer);
+        const newComment = Object
+            .assign({id: nanoid(MAX_ID_LENGTH)}, comment);
     
-        this._offers.push(newOffer);
+        offer.comments.push(newComment);
         
-        return newOffer;
-    }*/
+        return newComment;
+    }
     
     drop(offer, commentId)
     {
@@ -39,11 +39,6 @@ class CommentService
             return item.comments.find((comment) => comment.id === commentId);
         });
     }
-    
-    /*update(oldOffer, offer)
-    {
-        return Object.assign(oldOffer, offer);
-    }*/
 }
 
 module.exports = CommentService;

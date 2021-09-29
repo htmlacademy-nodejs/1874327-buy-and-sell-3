@@ -30,6 +30,13 @@ module.exports = (app, service, commentService) =>
             .json(offer);
     });
 
+    route.post(`/:offerId/comments`, offerExist(service), (req, res) =>
+    {
+        const comment = commentService.create(res.locals.offer, req.body);
+        return res.status(HttpCode.CREATED)
+            .json(comment);
+    });
+
     route.put(`/:offerId`, offerExist(service), (req, res) =>
     {
         const offer = service.update(res.locals.offer, req.body);

@@ -1,10 +1,12 @@
 const category = require(`./category`);
 const offer = require(`./offer`);
+const search = require(`./search`);
 
 const {
     CategoryService,
     OfferService,
-    CommentService
+    CommentService,
+    SearchService
 } = require(`../data-service`);
 
 const { Router } = require(`express`);
@@ -17,7 +19,7 @@ const app = new Router();
     const mockData = await getMockData();
 
     category(app, new CategoryService(mockData));
-    /*search(app, new SearchService(mockData));*/
+    search(app, new SearchService(mockData));
     offer(app, new OfferService(mockData), new CommentService(mockData));
 })();
 
