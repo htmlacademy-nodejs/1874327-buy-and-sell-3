@@ -24,10 +24,15 @@ class CommentService
         return commentId;
     }
     
-    /*findAll()
+    findAll()
     {
-        return this._offers;
-    }*/
+        const reducer = (prev, current) => {
+            prev.push(...current.comments);
+            return prev;
+        };
+
+        return this._offers.reduce(reducer, []);
+    }
     
     findOne(offerId, commentId)
     {
